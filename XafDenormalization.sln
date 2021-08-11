@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XafDenormalization.Module", "XafDenormalization.Module\XafDenormalization.Module.csproj", "{AFF3E407-A6F6-4E30-AC12-013BA63C712C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XafDenormalization.Module.Win", "XafDenormalization.Module.Win\XafDenormalization.Module.Win.csproj", "{19C22F72-0DE3-469E-8073-71033BE7E8EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XafDenormalization.Win", "XafDenormalization.Win\XafDenormalization.Win.csproj", "{9CE0EAFD-5A1F-4782-AC6C-52E5AAF38D5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XafDenormalization.Module.Blazor", "XafDenormalization.Module.Blazor\XafDenormalization.Module.Blazor.csproj", "{9957E854-C345-4BE6-8579-8C5BBADD8955}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XafDenormalization.Blazor.Server", "XafDenormalization.Blazor.Server\XafDenormalization.Blazor.Server.csproj", "{7C074612-2F39-422D-B83C-DF03CD29746A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFF3E407-A6F6-4E30-AC12-013BA63C712C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF3E407-A6F6-4E30-AC12-013BA63C712C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF3E407-A6F6-4E30-AC12-013BA63C712C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF3E407-A6F6-4E30-AC12-013BA63C712C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C22F72-0DE3-469E-8073-71033BE7E8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C22F72-0DE3-469E-8073-71033BE7E8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C22F72-0DE3-469E-8073-71033BE7E8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C22F72-0DE3-469E-8073-71033BE7E8EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE0EAFD-5A1F-4782-AC6C-52E5AAF38D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE0EAFD-5A1F-4782-AC6C-52E5AAF38D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE0EAFD-5A1F-4782-AC6C-52E5AAF38D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE0EAFD-5A1F-4782-AC6C-52E5AAF38D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9957E854-C345-4BE6-8579-8C5BBADD8955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9957E854-C345-4BE6-8579-8C5BBADD8955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9957E854-C345-4BE6-8579-8C5BBADD8955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9957E854-C345-4BE6-8579-8C5BBADD8955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C074612-2F39-422D-B83C-DF03CD29746A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C074612-2F39-422D-B83C-DF03CD29746A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C074612-2F39-422D-B83C-DF03CD29746A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C074612-2F39-422D-B83C-DF03CD29746A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A9B85F3-F6AD-4551-888A-AFAEE0B9C90B}
+	EndGlobalSection
+EndGlobal
