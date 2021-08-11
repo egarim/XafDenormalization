@@ -12,7 +12,7 @@ namespace XafDenormalization.Module.BusinessObjects
         public Customer Customer { get; set; }
 
         public PaymentTerms PaymentTerms { get; set; }
-        public Product Product { get; set; }
+        public IEnumerable<Product> Product { get; set; }
 
 
     }
