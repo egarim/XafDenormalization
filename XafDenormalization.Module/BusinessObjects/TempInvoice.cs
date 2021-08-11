@@ -8,6 +8,7 @@ namespace XafDenormalization.Module.BusinessObjects
 {
     public class TempInvoice
     {
+        public string InvoiceNumber { get; set; }
         public DateTime Date { get; set; }
         public Customer Customer { get; set; }
 

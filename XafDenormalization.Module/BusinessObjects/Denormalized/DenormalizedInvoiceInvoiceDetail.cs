@@ -16,6 +16,7 @@ using XafDenormalization.Module.BusinessObjects.Normalized;
 namespace XafDenormalization.Module.BusinessObjects.Denormalized
 {
    
+    [VisibleInReports()]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
@@ -33,6 +34,7 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
+        DateTime invoiceDate;
         int paymentTermsDays;
         string paymentTermsName;
         string paymentTermsCode;
@@ -57,6 +59,12 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
         }
 
 
+        
+        public DateTime InvoiceDate
+        {
+            get => invoiceDate;
+            set => SetPropertyValue(nameof(InvoiceDate), ref invoiceDate, value);
+        }
         public int Qty
         {
             get => qty;
@@ -133,7 +141,7 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
         }
 
 
-        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        [Size(SizeAttribute.Unlimited)]
         public string ProductDescription
         {
             get => productDescription;
@@ -169,6 +177,48 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
             get => paymentTermsDays;
             set => SetPropertyValue(nameof(PaymentTermsDays), ref paymentTermsDays, value);
         }
+        protected override void OnChanged(string propertyName, object oldValue, object newValue)
+        {
+            base.OnChanged(propertyName, oldValue, newValue);
+            if (this.IsLoading)
+                return;
+
+            if (propertyName == nameof(Invoice))
+            {
+                this.InvoiceDate = Invoice.Date;
+                this.CustomerCode = this.Invoice.Customer.Code;
+                this.CustomerName = this.Invoice.Customer.Name;
+                this.CustomerCode = this.Invoice.Customer.Code;
+                this.CustomerShippingAddress = this.Invoice.Customer.ShippingAddress.FullAddress;
+                this.CustomerBillingAddress = this.Invoice.Customer.BillingAddress.FullAddress;
+                this.PaymentTermsCode = this.Invoice.Customer.PaymentTerms.Code;
+                this.PaymentTermsName = this.Invoice.Customer.PaymentTerms.Name;
+                this.paymentTermsDays = this.Invoice.Customer.PaymentTerms.Days;
+            }
+
+            if (propertyName == nameof(Product))
+            {
+                this.UnitPrice = this.Product.UnitPrice;
+                this.ProductCode = this.Product.Code;
+                this.ProductName = this.Product.Name;
+                this.ProductDescription = this.Product.Description;
+                this.ProductUnitPrice = this.Product.UnitPrice;
+            }
+            if (propertyName == nameof(Product))
+            {
+                this.UnitPrice = this.Product.UnitPrice;
+                this.ProductCode = this.Product.Code;
+                this.ProductName = this.Product.Name;
+                this.ProductDescription = this.Product.Description;
+                this.ProductUnitPrice = this.Product.UnitPrice;
+            }
+            if ((propertyName == nameof(Product)) || (propertyName == nameof(Qty)) || (propertyName == nameof(UnitPrice)))
+            {
+                this.Total = this.UnitPrice * this.Qty;
+            }
+        }
+
+
 
 
     }

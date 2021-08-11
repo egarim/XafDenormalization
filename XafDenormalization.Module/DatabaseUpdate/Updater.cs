@@ -43,14 +43,17 @@ namespace XafDenormalization.Module.DatabaseUpdate
                 PaymentTerms Days30 = ObjectSpace.CreateObject<PaymentTerms>();
                 Days30.Code = "002";
                 Days30.Name = "30 days";
+                Days30.Days = 30;
 
                 PaymentTerms Days60 = ObjectSpace.CreateObject<PaymentTerms>();
                 Days60.Code = "003";
                 Days60.Name = "60 days";
+                Days60.Days = 90;
 
                 PaymentTerms Days90 = ObjectSpace.CreateObject<PaymentTerms>();
                 Days90.Code = "004";
                 Days90.Name = "90 days";
+                Days90.Days = 90;
                 paymentTerms.Add(Cash);
                 paymentTerms.Add(Days30);
                 paymentTerms.Add(Days60);

@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XafDenormalization.Module.BusinessObjects;
+using XafDenormalization.Module.BusinessObjects.Denormalized;
 using XafDenormalization.Module.BusinessObjects.Normalized;
 
 namespace XafDenormalization.Module.Controllers
@@ -38,8 +39,9 @@ namespace XafDenormalization.Module.Controllers
             var Customers = Os.CreateCollection(typeof(Customer), null).Cast<Customer>().ToList();
             var Products = Os.CreateCollection(typeof(Product), null).Cast<Product>().ToList();
             //var PaymentTerms = Os.CreateCollection(typeof(PaymentTerms), null).Cast<PaymentTerms>().ToList();
-
+            int InvoiceNumber = 0;
             var CustomerFaker = new Faker<TempInvoice>()
+                 .RuleFor(o => o.InvoiceNumber, f => (InvoiceNumber++).ToString("D8"))
                  .RuleFor(o => o.Customer, f => f.PickRandom<Customer>(Customers))
                  .RuleFor(o => o.Product, f => f.PickRandom<Product>(Products,30))
                  .RuleFor(o => o.Qty, f => f.Random.Int(0,500));
@@ -51,13 +53,28 @@ namespace XafDenormalization.Module.Controllers
                 var NormalizedInvoice= Os.CreateObject<Invoice>();
                 NormalizedInvoice.Date = InvoiceDate;
                 NormalizedInvoice.Customer = CurrentInvoice.Customer;
-              
+                NormalizedInvoice.InvoiceNumber = CurrentInvoice.InvoiceNumber;
                 foreach (Product product in CurrentInvoice.Product)
                 {
                     var Detail = Os.CreateObject<InvoiceDetail>();
                     Detail.Product = product;
                     Detail.Qty = CurrentInvoice.Qty;
                     NormalizedInvoice.InvoiceDetails.Add(Detail);
+                }
+
+            }
+            foreach (var CurrentInvoice in TempInvoices)
+            {
+                var DenormalizedInvoice = Os.CreateObject<DenormalizedInvoice>();
+                DenormalizedInvoice.Date = InvoiceDate;
+                DenormalizedInvoice.Customer = CurrentInvoice.Customer;
+                DenormalizedInvoice.InvoiceNumber = CurrentInvoice.InvoiceNumber;
+                foreach (Product product in CurrentInvoice.Product)
+                {
+                    var DenormalizedInvoiceInvoiceDetail = Os.CreateObject<DenormalizedInvoiceInvoiceDetail>();
+                    DenormalizedInvoiceInvoiceDetail.Product = product;
+                    DenormalizedInvoiceInvoiceDetail.Qty = CurrentInvoice.Qty;
+                    DenormalizedInvoice.InvoiceDetails.Add(DenormalizedInvoiceInvoiceDetail);
                 }
 
             }

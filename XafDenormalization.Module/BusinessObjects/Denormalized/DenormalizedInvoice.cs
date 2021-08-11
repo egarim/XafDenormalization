@@ -16,7 +16,7 @@ using XafDenormalization.Module.BusinessObjects.Normalized;
 namespace XafDenormalization.Module.BusinessObjects.Denormalized
 {
     [DefaultClassOptions]
-    [NavigationItem("Normalized")]
+    [NavigationItem("Denormalized")]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
@@ -34,8 +34,16 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
+        
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public string InvoiceNumber
+        {
+            get => invoiceNumber;
+            set => SetPropertyValue(nameof(InvoiceNumber), ref invoiceNumber, value);
+        }
 
-        PaymentTerms paymentTerms;
+
+        string invoiceNumber;
         Customer customer;
         DateTime date;
 
@@ -53,12 +61,8 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
         
 
 
-        public PaymentTerms PaymentTerms
-        {
-            get => paymentTerms;
-            set => SetPropertyValue(nameof(PaymentTerms), ref paymentTerms, value);
-        }
-        [Association("DenormalizedInvoice-DenormalizedInvoiceInvoiceDetail")]
+     
+        [Association("DenormalizedInvoice-DenormalizedInvoiceInvoiceDetail"), DevExpress.Xpo.Aggregated()]
         public XPCollection<DenormalizedInvoiceInvoiceDetail> InvoiceDetails
         {
             get

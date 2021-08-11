@@ -34,8 +34,16 @@ namespace XafDenormalization.Module.BusinessObjects.Normalized
         }
 
 
-        PaymentTerms paymentTerms;
-        Customer customer;
+
+        
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public string InvoiceNumber
+        {
+            get => invoiceNumber;
+            set => SetPropertyValue(nameof(InvoiceNumber), ref invoiceNumber, value);
+        }
+        string invoiceNumber;
+       Customer customer;
         DateTime date;
 
         public DateTime Date
@@ -51,7 +59,7 @@ namespace XafDenormalization.Module.BusinessObjects.Normalized
         }
         
       
-        [Association("Invoice-InvoiceDetails")]
+        [Association("Invoice-InvoiceDetails"),DevExpress.Xpo.Aggregated()]
         public XPCollection<InvoiceDetail> InvoiceDetails
         {
             get
