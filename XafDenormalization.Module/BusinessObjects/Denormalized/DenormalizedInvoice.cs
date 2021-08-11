@@ -11,19 +11,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using XafDenormalization.Module.BusinessObjects.Normalized;
 
-namespace XafDenormalization.Module.BusinessObjects
+namespace XafDenormalization.Module.BusinessObjects.Denormalized
 {
-   
     [DefaultClassOptions]
+    [NavigationItem("Normalized")]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class Customer : BaseObject
+    public class DenormalizedInvoice : BaseObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        public Customer(Session session)
+        public DenormalizedInvoice(Session session)
             : base(session)
         {
         }
@@ -32,48 +33,38 @@ namespace XafDenormalization.Module.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
+
+
         PaymentTerms paymentTerms;
-        AddressBase billingAddress;
-        AddressBase shippingAddress;
+        Customer customer;
+        DateTime date;
 
-        string name;
-        string code;
-
-        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
-        public string Code
+        public DateTime Date
         {
-            get => code;
-            set => SetPropertyValue(nameof(Code), ref code, value);
+            get => date;
+            set => SetPropertyValue(nameof(Date), ref date, value);
         }
 
+        public Customer Customer
+        {
+            get => customer;
+            set => SetPropertyValue(nameof(Customer), ref customer, value);
+        }
         
+
+
         public PaymentTerms PaymentTerms
         {
             get => paymentTerms;
             set => SetPropertyValue(nameof(PaymentTerms), ref paymentTerms, value);
         }
-
-        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
-        public string Name
+        [Association("DenormalizedInvoice-DenormalizedInvoiceInvoiceDetail")]
+        public XPCollection<DenormalizedInvoiceInvoiceDetail> InvoiceDetails
         {
-            get => name;
-            set => SetPropertyValue(nameof(Name), ref name, value);
-        }
-
-
-
-        public AddressBase ShippingAddress
-        {
-            get => shippingAddress;
-            set => SetPropertyValue(nameof(ShippingAddress), ref shippingAddress, value);
-        }
-
-
-
-        public AddressBase BillingAddress
-        {
-            get => billingAddress;
-            set => SetPropertyValue(nameof(BillingAddress), ref billingAddress, value);
+            get
+            {
+                return GetCollection<DenormalizedInvoiceInvoiceDetail>(nameof(InvoiceDetails));
+            }
         }
     }
 }

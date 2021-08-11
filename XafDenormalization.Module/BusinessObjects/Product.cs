@@ -52,7 +52,7 @@ namespace XafDenormalization.Module.BusinessObjects
         }
 
         
-        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        [Size(SizeAttribute.Unlimited)]
         public string Description
         {
             get => description;

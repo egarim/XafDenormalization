@@ -32,6 +32,7 @@ namespace XafDenormalization.Module.BusinessObjects.Normalized
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
+      
         Invoice invoice;
         decimal total;
         decimal unitPrice;
@@ -64,13 +65,33 @@ namespace XafDenormalization.Module.BusinessObjects.Normalized
             get => total;
             set => SetPropertyValue(nameof(Total), ref total, value);
         }
-        
+
         [Association("Invoice-InvoiceDetails")]
         public Invoice Invoice
         {
             get => invoice;
             set => SetPropertyValue(nameof(Invoice), ref invoice, value);
         }
+
+        protected override void OnChanged(string propertyName, object oldValue, object newValue)
+        {
+            base.OnChanged(propertyName, oldValue, newValue);
+            if (this.IsLoading)
+                return;
+
+
+            if(propertyName==nameof(Product))
+            {
+                this.UnitPrice = this.Product.UnitPrice;
+            }
+            if ((propertyName == nameof(Product))|| (propertyName == nameof(Qty)) || (propertyName == nameof(UnitPrice)))
+            {
+                this.Total = this.UnitPrice * this.Qty;
+            }
+        }
+
+
+
 
     }
 }

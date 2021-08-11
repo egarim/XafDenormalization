@@ -13,6 +13,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using XafDenormalization.Module.BusinessObjects;
 using Bogus;
+using System.Collections.Generic;
 
 namespace XafDenormalization.Module.DatabaseUpdate
 {
@@ -32,7 +33,7 @@ namespace XafDenormalization.Module.DatabaseUpdate
             //    theObject = ObjectSpace.CreateObject<DomainObject1>();
             //    theObject.Name = name;
             //}
-
+            List<PaymentTerms> paymentTerms = new List<PaymentTerms>();
             if (ObjectSpace.GetObjectsCount(typeof(PaymentTerms), null) == 0)
             {
                 PaymentTerms Cash = ObjectSpace.CreateObject<PaymentTerms>();
@@ -50,28 +51,37 @@ namespace XafDenormalization.Module.DatabaseUpdate
                 PaymentTerms Days90 = ObjectSpace.CreateObject<PaymentTerms>();
                 Days90.Code = "004";
                 Days90.Name = "90 days";
+                paymentTerms.Add(Cash);
+                paymentTerms.Add(Days30);
+                paymentTerms.Add(Days60);
+                paymentTerms.Add(Days90);
             }
 
+            var ProductCode = 0;
             var CustomerIds = 0;
+            var Session = ((XPObjectSpace)this.ObjectSpace).Session;
             if (ObjectSpace.GetObjectsCount(typeof(Customer), null) == 0)
             {
                 var CustomerFaker = new Faker<Customer>()
                     .CustomInstantiator(c => this.ObjectSpace.CreateObject<Customer>())
                     .RuleFor(o => o.Name, f => f.Person.FullName)
+                       .RuleFor(o => o.PaymentTerms, f => f.PickRandom<PaymentTerms>(paymentTerms))
                     .RuleFor(o => o.Code, f => (CustomerIds++).ToString("D8"))
-                    .RuleFor(o => o.ShippingAddress, f => $"{f.Person.Address.City}{System.Environment.NewLine}{f.Person.Address.Street}{System.Environment.NewLine}{f.Person.Address.Suite}{System.Environment.NewLine}{f.Person.Address.State}{System.Environment.NewLine}{f.Person.Address.ZipCode}")
-                    .RuleFor(o => o.BillingAddress, f => $"{f.Person.Address.City}{System.Environment.NewLine}{f.Person.Address.Street}{System.Environment.NewLine}{f.Person.Address.Suite}{System.Environment.NewLine}{f.Person.Address.State}{System.Environment.NewLine}{f.Person.Address.ZipCode}");
-                var Customers = CustomerFaker.Generate(1000);
+                    .RuleFor(o => o.ShippingAddress, f => new AddressBase(Session, f.Person.Address.City, f.Person.Address.Street, f.Person.Address.Suite, f.Person.Address.State, f.Person.Address.ZipCode))
+                    .RuleFor(o => o.BillingAddress, f => new AddressBase(Session, f.Person.Address.City, f.Person.Address.Street, f.Person.Address.Suite, f.Person.Address.State, f.Person.Address.ZipCode));
+                //.RuleFor(o => o.ShippingAddress, f => $"{f.Person.Address.City}{System.Environment.NewLine}{f.Person.Address.Street}{System.Environment.NewLine}{f.Person.Address.Suite}{System.Environment.NewLine}{f.Person.Address.State}{System.Environment.NewLine}{f.Person.Address.ZipCode}")
+                //.RuleFor(o => o.BillingAddress, f => $"{f.Person.Address.City}{System.Environment.NewLine}{f.Person.Address.Street}{System.Environment.NewLine}{f.Person.Address.Suite}{System.Environment.NewLine}{f.Person.Address.State}{System.Environment.NewLine}{f.Person.Address.ZipCode}");
+                var Customers = CustomerFaker.Generate(100);
             }
             if (ObjectSpace.GetObjectsCount(typeof(Product), null) == 0)
             {
                 var CustomerFaker = new Faker<Product>()
                     .CustomInstantiator(c => this.ObjectSpace.CreateObject<Product>())
                     .RuleFor(o => o.Name, f => f.Commerce.Product())
-                     .RuleFor(o => o.Name, f => f.Commerce.ProductDescription())
-                     .RuleFor(o => o.Name, f => f.Commerce.Price())
-                    .RuleFor(o => o.Code, f => (CustomerIds++).ToString("D8"));
-                var Customers = CustomerFaker.Generate(1000);
+                     .RuleFor(o => o.Description, f => f.Commerce.ProductDescription())
+                     .RuleFor(o => o.UnitPrice, f => Decimal.Parse(f.Commerce.Price(1,100,2,"")))
+                    .RuleFor(o => o.Code, f => (ProductCode++).ToString("D8"));
+                var Customers = CustomerFaker.Generate(100);
             }
 
 

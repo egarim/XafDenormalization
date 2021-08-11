@@ -50,11 +50,7 @@ namespace XafDenormalization.Module.BusinessObjects.Normalized
             set => SetPropertyValue(nameof(Customer), ref customer, value);
         }
         
-        public PaymentTerms PaymentTerms
-        {
-            get => paymentTerms;
-            set => SetPropertyValue(nameof(PaymentTerms), ref paymentTerms, value);
-        }
+      
         [Association("Invoice-InvoiceDetails")]
         public XPCollection<InvoiceDetail> InvoiceDetails
         {
