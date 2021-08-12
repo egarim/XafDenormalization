@@ -15,6 +15,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{312780E6-4968-4FF4-B6E6-81F7D6407CF6}"
 	ProjectSection(SolutionItems) = preProject
 		Denormalized Invoice.repx = Denormalized Invoice.repx
+		DenormalizeLog.txt = DenormalizeLog.txt
+		Invoice with Groups.repx = Invoice with Groups.repx
+		InvoiceMasterDetail.repx = InvoiceMasterDetail.repx
+		NormalizedLog.txt = NormalizedLog.txt
+		Reports Normalize vs denormalized with groups.txt = Reports Normalize vs denormalized with groups.txt
+		Reports Normalized master detail vs denormalized master detail.txt = Reports Normalized master detail vs denormalized master detail.txt
 	EndProjectSection
 EndProject
 Global

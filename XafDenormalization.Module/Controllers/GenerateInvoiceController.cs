@@ -46,7 +46,7 @@ namespace XafDenormalization.Module.Controllers
                  .RuleFor(o => o.Product, f => f.PickRandom<Product>(Products,30))
                  .RuleFor(o => o.Qty, f => f.Random.Int(0,500));
 
-            List<TempInvoice> TempInvoices = CustomerFaker.Generate(10);
+            List<TempInvoice> TempInvoices = CustomerFaker.Generate(500);
             var InvoiceDate = DateTime.Now;
             foreach (var CurrentInvoice in TempInvoices)
             {

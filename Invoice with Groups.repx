@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="21.1.3.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="Report1" DisplayName="Invoice with Groups" Margins="100, 100, 27, 23" PageWidth="850" PageHeight="1100" Version="21.1" DataSource="#Ref-0" Font="Arial, 9.75pt">
+  <Extensions>
+    <Item1 Ref="2" Key="DataSerializationExtension" Value="XtraReport" />
+    <Item2 Ref="3" Key="DataEditorExtension" Value="XtraReport" />
+    <Item3 Ref="4" Key="ParameterEditorExtension" Value="XtraReport" />
+  </Extensions>
+  <Bands>
+    <Item1 Ref="5" ControlType="TopMarginBand" Name="TopMargin" HeightF="27.083334" />
+    <Item2 Ref="6" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="22.916666" />
+    <Item3 Ref="7" ControlType="DetailBand" Name="Detail" HeightF="23.958334" KeepTogether="true">
+      <Controls>
+        <Item1 Ref="8" ControlType="XRLabel" Name="label14" TextFormatString="{0:N2}" Multiline="true" Text="label14" TextAlignment="TopRight" SizeF="109.375,23" LocationFloat="529.1667,0" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="9" EventName="BeforePrint" PropertyName="Text" Expression="[InvoiceDetails].[Total]" />
+          </ExpressionBindings>
+        </Item1>
+        <Item2 Ref="10" ControlType="XRLabel" Name="label13" Multiline="true" Text="label13" TextAlignment="TopRight" SizeF="100,23" LocationFloat="416.66666,0" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="11" EventName="BeforePrint" PropertyName="Text" Expression="[InvoiceDetails].[UnitPrice]" />
+          </ExpressionBindings>
+        </Item2>
+        <Item3 Ref="12" ControlType="XRLabel" Name="label12" Multiline="true" Text="label12" TextAlignment="TopCenter" SizeF="81.25,23" LocationFloat="335.41666,0" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="13" EventName="BeforePrint" PropertyName="Text" Expression="[InvoiceDetails].[Qty]" />
+          </ExpressionBindings>
+          <StylePriority Ref="14" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="15" ControlType="XRLabel" Name="label11" Multiline="true" Text="label11" SizeF="181.24998,23" LocationFloat="135.41667,0" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="16" EventName="BeforePrint" PropertyName="Text" Expression="[InvoiceDetails].[Product].[Name]" />
+          </ExpressionBindings>
+        </Item4>
+        <Item5 Ref="17" ControlType="XRLabel" Name="label10" Multiline="true" Text="label10" SizeF="100,23" LocationFloat="22.916666,0" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="18" EventName="BeforePrint" PropertyName="Text" Expression="[InvoiceDetails].[Product].[Code]" />
+          </ExpressionBindings>
+        </Item5>
+      </Controls>
+    </Item3>
+    <Item4 Ref="19" ControlType="GroupHeaderBand" Name="GroupHeader1" HeightF="114.583336">
+      <SubBands>
+        <Item1 Ref="20" ControlType="SubBand" Name="SubBand3" HeightF="39.79168" BackColor="LightSkyBlue">
+          <Controls>
+            <Item1 Ref="21" ControlType="XRLabel" Name="label17" Multiline="true" Text="Total" TextAlignment="TopCenter" SizeF="121.87512,20.833334" LocationFloat="516.6667,10" Font="Arial, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+              <StylePriority Ref="22" UseFont="false" UseTextAlignment="false" />
+            </Item1>
+            <Item2 Ref="23" ControlType="XRLabel" Name="label16" Multiline="true" Text="Unit Price" TextAlignment="TopCenter" SizeF="102.08334,20.833334" LocationFloat="414.58334,10" Font="Arial, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+              <StylePriority Ref="24" UseFont="false" UseTextAlignment="false" />
+            </Item2>
+            <Item3 Ref="25" ControlType="XRLabel" Name="label15" Multiline="true" Text="Qty" TextAlignment="TopCenter" SizeF="79.16669,20.833334" LocationFloat="335.41666,10" Font="Arial, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+              <StylePriority Ref="26" UseFont="false" UseTextAlignment="false" />
+            </Item3>
+            <Item4 Ref="27" ControlType="XRLabel" Name="label9" Multiline="true" Text="Product " SizeF="312.5,20.833334" LocationFloat="22.916666,10" Font="Arial, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+              <StylePriority Ref="28" UseFont="false" />
+            </Item4>
+            <Item5 Ref="29" ControlType="XRShape" Name="shape1" SizeF="642.7083,37.5" LocationFloat="3.125,1.2500128">
+              <Shape Ref="30" ShapeName="Rectangle" />
+            </Item5>
+          </Controls>
+          <StylePriority Ref="31" UseBackColor="false" />
+        </Item1>
+      </SubBands>
+      <GroupFields>
+        <Item1 Ref="32" FieldName="InvoiceNumber" />
+      </GroupFields>
+      <Controls>
+        <Item1 Ref="33" ControlType="XRLine" Name="line4" SizeF="640.625,2.0833359" LocationFloat="10.000007,105.20833" BorderColor="Silver">
+          <StylePriority Ref="34" UseBorderColor="false" />
+        </Item1>
+        <Item2 Ref="35" ControlType="XRLine" Name="line3" SizeF="146.87503,2" LocationFloat="500.4167,14.583333" ForeColor="LightSkyBlue">
+          <StylePriority Ref="36" UseForeColor="false" />
+        </Item2>
+        <Item3 Ref="37" ControlType="XRLabel" Name="label8" Multiline="true" Text="Invoice" SizeF="79.791626,20.833334" LocationFloat="414.58334,3.125" Font="Arial, 9.75pt, style=Bold" BackColor="LightSkyBlue" Padding="2,2,0,0,100">
+          <StylePriority Ref="38" UseFont="false" UseBackColor="false" />
+        </Item3>
+        <Item4 Ref="39" ControlType="XRLabel" Name="label7" Multiline="true" Text="label7" SizeF="100,23" LocationFloat="423.33337,30.208334" Font="Arial, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="40" EventName="BeforePrint" PropertyName="Text" Expression="[InvoiceNumber]" />
+          </ExpressionBindings>
+          <StylePriority Ref="41" UseFont="false" />
+        </Item4>
+        <Item5 Ref="42" ControlType="XRLabel" Name="label6" Multiline="true" Text="label6" SizeF="172.91663,23" LocationFloat="423.33337,76.208336" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="43" EventName="BeforePrint" PropertyName="Text" Expression="[Customer].[PaymentTerms].[Name]" />
+          </ExpressionBindings>
+        </Item5>
+        <Item6 Ref="44" ControlType="XRLabel" Name="label5" Multiline="true" Text="Customer" SizeF="100,20.833334" LocationFloat="18.75,3.125" Font="Arial, 9.75pt, style=Bold" BackColor="LightSkyBlue" Padding="2,2,0,0,100">
+          <StylePriority Ref="45" UseFont="false" UseBackColor="false" />
+        </Item6>
+        <Item7 Ref="46" ControlType="XRLine" Name="line2" SizeF="244.79166,2" LocationFloat="118.75,13.541667" ForeColor="LightSkyBlue">
+          <StylePriority Ref="47" UseForeColor="false" />
+        </Item7>
+        <Item8 Ref="48" ControlType="XRLabel" Name="label2" TextFormatString="{0:d}" Multiline="true" Text="label2" SizeF="100,23" LocationFloat="423.33337,53.20835" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="49" EventName="BeforePrint" PropertyName="Text" Expression="[Date]" />
+          </ExpressionBindings>
+        </Item8>
+        <Item9 Ref="50" ControlType="XRLabel" Name="label3" Multiline="true" Text="label3" SizeF="340.625,23" LocationFloat="22.916666,30.208334" Font="Arial, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="51" EventName="BeforePrint" PropertyName="Text" Expression="[Customer].[Name]" />
+          </ExpressionBindings>
+          <StylePriority Ref="52" UseFont="false" />
+        </Item9>
+        <Item10 Ref="53" ControlType="XRLabel" Name="label4" Multiline="true" Text="label4" SizeF="340.625,23.000004" LocationFloat="22.916666,53.20835" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="54" EventName="BeforePrint" PropertyName="Text" Expression="[Customer].[BillingAddress].[FullAddress]" />
+          </ExpressionBindings>
+        </Item10>
+      </Controls>
+    </Item4>
+    <Item5 Ref="55" ControlType="GroupFooterBand" Name="GroupFooter1" PageBreak="AfterBand" HeightF="36.458332">
+      <Controls>
+        <Item1 Ref="56" ControlType="XRLabel" Name="label18" TextFormatString="{0:N2}" Multiline="true" Text="label14" TextAlignment="TopRight" SizeF="109.375,23" LocationFloat="530.625,10.000007" Font="Arial, 9.75pt, style=Bold" Padding="2,2,0,0,100" Borders="Top">
+          <Summary Ref="57" Running="Group" />
+          <ExpressionBindings>
+            <Item1 Ref="58" EventName="BeforePrint" PropertyName="Text" Expression="sumSum([InvoiceDetails].[Total])" />
+          </ExpressionBindings>
+          <StylePriority Ref="59" UseFont="false" />
+        </Item1>
+        <Item2 Ref="60" ControlType="XRLine" Name="line5" SizeF="641.6667,5.208333" LocationFloat="2.0833333,2.0833333" />
+      </Controls>
+    </Item5>
+    <Item6 Ref="61" ControlType="PageHeaderBand" Name="PageHeader" HeightF="54.166668">
+      <Controls>
+        <Item1 Ref="62" ControlType="XRLine" Name="line1" SizeF="635.4166,6.250002" LocationFloat="4.1666665,37.916664" ForeColor="LightSkyBlue" BorderColor="LightSkyBlue">
+          <StylePriority Ref="63" UseForeColor="false" UseBorderColor="false" />
+        </Item1>
+        <Item2 Ref="64" ControlType="XRLabel" Name="label1" Multiline="true" Text="Company ABC" SizeF="336.4583,30.624994" LocationFloat="3.125,7.29167" Font="Arial, 14pt, style=Bold" ForeColor="255,79,129,189" Padding="2,2,0,0,100">
+          <StylePriority Ref="65" UseFont="false" UseForeColor="false" />
+        </Item2>
+      </Controls>
+    </Item6>
+    <Item7 Ref="66" ControlType="PageFooterBand" Name="PageFooter" HeightF="24.791655">
+      <Controls>
+        <Item1 Ref="67" ControlType="XRPageInfo" Name="pageInfo1" RunningBand="#Ref-19" TextAlignment="TopCenter" SizeF="161.45831,21.249992" LocationFloat="482.29166,0" Padding="2,2,0,0,100">
+          <StylePriority Ref="68" UseTextAlignment="false" />
+        </Item1>
+      </Controls>
+    </Item7>
+  </Bands>
+  <ComponentStorage>
+    <Item1 Ref="0" Name="collectionDataSource1" ObjectTypeName="XafDenormalization.Module.BusinessObjects.Normalized.Invoice" ObjectType="DevExpress.Persistent.Base.ReportsV2.CollectionDataSource,DevExpress.Persistent.Base.v21.1" TopReturnedRecords="0">
+      <Sorting Ref="69" />
+    </Item1>
+  </ComponentStorage>
+</XtraReportsLayoutSerializer>
