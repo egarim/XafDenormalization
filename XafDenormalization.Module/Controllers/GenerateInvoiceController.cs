@@ -72,6 +72,7 @@ namespace XafDenormalization.Module.Controllers
                 foreach (Product product in CurrentInvoice.Product)
                 {
                     var DenormalizedInvoiceInvoiceDetail = Os.CreateObject<DenormalizedInvoiceInvoiceDetail>();
+                    DenormalizedInvoiceInvoiceDetail.InvoiceNumber = DenormalizedInvoice.InvoiceNumber;
                     DenormalizedInvoiceInvoiceDetail.Product = product;
                     DenormalizedInvoiceInvoiceDetail.Qty = CurrentInvoice.Qty;
                     DenormalizedInvoice.InvoiceDetails.Add(DenormalizedInvoiceInvoiceDetail);

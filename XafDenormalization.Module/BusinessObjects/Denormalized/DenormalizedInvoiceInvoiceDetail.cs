@@ -34,6 +34,7 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
+        string invoiceNumber;
         DateTime invoiceDate;
         int paymentTermsDays;
         string paymentTermsName;
@@ -60,6 +61,13 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
 
 
         
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public string InvoiceNumber
+        {
+            get => invoiceNumber;
+            set => SetPropertyValue(nameof(InvoiceNumber), ref invoiceNumber, value);
+        }
+
         public DateTime InvoiceDate
         {
             get => invoiceDate;
@@ -182,9 +190,11 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
             base.OnChanged(propertyName, oldValue, newValue);
             if (this.IsLoading)
                 return;
-
+        
             if (propertyName == nameof(Invoice))
             {
+                if (Invoice == null)
+                    return;
                 this.InvoiceDate = Invoice.Date;
                 this.CustomerCode = this.Invoice.Customer.Code;
                 this.CustomerName = this.Invoice.Customer.Name;
@@ -198,6 +208,8 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
 
             if (propertyName == nameof(Product))
             {
+                if (Product == null)
+                    return;
                 this.UnitPrice = this.Product.UnitPrice;
                 this.ProductCode = this.Product.Code;
                 this.ProductName = this.Product.Name;
@@ -206,6 +218,8 @@ namespace XafDenormalization.Module.BusinessObjects.Denormalized
             }
             if (propertyName == nameof(Product))
             {
+                if (Product == null)
+                    return;
                 this.UnitPrice = this.Product.UnitPrice;
                 this.ProductCode = this.Product.Code;
                 this.ProductName = this.Product.Name;

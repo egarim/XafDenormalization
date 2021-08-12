@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Forms;
 
 using DevExpress.ExpressApp;
@@ -7,6 +9,7 @@ using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Win;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
+using DevExpress.Xpo.DB;
 using DevExpress.XtraEditors;
 
 namespace XafDenormalization.Win {
@@ -16,6 +19,11 @@ namespace XafDenormalization.Win {
         /// </summary>
         [STAThread]
         static void Main() {
+
+            FieldInfo xpoSwitchF = typeof(ConnectionProviderSql).GetField("xpoSwitch", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            TraceSwitch xpoSwitch = (TraceSwitch)xpoSwitchF.GetValue(null);
+            xpoSwitch.Level = TraceLevel.Info;
+
             DevExpress.ExpressApp.FrameworkSettings.DefaultSettingsCompatibilityMode = DevExpress.ExpressApp.FrameworkSettingsCompatibilityMode.Latest;
 #if EASYTEST
             DevExpress.ExpressApp.Win.EasyTest.EasyTestRemotingRegistration.Register();
